@@ -35,7 +35,7 @@ for i in range (0, len(parameters)):
 		apiUrl += "&";
 	apiUrl += parameters[i];
 
-print ("fetching: ", apiUrl);
+print ("fetching from URL: ", apiUrl);
 
 results = requests.get(apiUrl).json();
 ###
@@ -174,11 +174,11 @@ centroids = kmeans3d.cluster_centers_;
 
 #colorset constant for color values on graph
 colorset = [];
-colorset.append("rgb(60, 140, 215)");
-colorset.append("rgb(13, 120, 7)");
-colorset.append("rgb(53, 190, 107)");
-colorset.append("rgb(250, 19, 100)");
-colorset.append("rgb(23, 190, 207)");
+colorset.append("rgb(60, 140, 215)"); #arbitrary color value
+colorset.append("rgb(13, 120, 7)"); #arbitrary color value
+colorset.append("rgb(53, 190, 107)"); #arbitrary color value
+colorset.append("rgb(250, 19, 100)"); #red
+colorset.append("rgb(23, 190, 207)"); #blue
 #TODO colorset currently hardcoded only for cluster_count = 3, should change this if cluster_count > 3
 
 markerSize_known = 5;
@@ -265,6 +265,9 @@ fig = dict(
 
 
 
+
+
+
 #run and plot SVM (using an RBF kernel) on individual testpoints where a testpoint is a count of failures for a given timestamp of a test given a commit group (aggregated by oldest timestamp in the commit group)
 gammaConst = 10; #constant for gamma value in RBF kernel
 cConst = 10; #constant for C value in RBF kernel
@@ -321,7 +324,7 @@ clf.fit(x2d, y2d);
 
 results = clf.predict(input2d)
 
-print ("Results for unknown tests prediction (0 indicates reliable, 1 indicates flaky): ", results);
+print ("Results for SVM prediction on unknown tests (0 indicates reliable, 1 indicates flaky): ", results);
 
 for i in range(0, len(results)):
 	result = results[i];
@@ -392,8 +395,10 @@ figure_svm = dict(
 
 
 
+
 #plot the testpoints for a given test where a testpoint is a count of failures for a given timestamp of a test given a commit group (aggregated by oldest timestamp in the commit group)
 #2d graph of timestamp vs counts for a given test where each count value is aggregated by commit group (earliest timestamp in commit group is used as the timestamp)
+#to change the test we want to view, simply change the testName constant to a valid name of a test
 failedTestClusterMap;
 dataset2d = [];
 
