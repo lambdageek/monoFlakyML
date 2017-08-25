@@ -249,7 +249,7 @@ layout = graph_objs.Layout(
 			title="Y - Platform Name (numericalized)"
 		),
 		zaxis=dict(
-			title="Z - 1 week timestamp (normalized)"
+			title="Z - " + prevTimeConst + " day(s) timestamp (normalized)"
 		)
 	)
 );
